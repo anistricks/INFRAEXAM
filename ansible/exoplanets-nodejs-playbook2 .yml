@@ -14,8 +14,8 @@
       apt:
         update_cache: yes
         name: 
-        - nodejs
-        - npm
+          - nodejs
+          - npm
         state: present
 
     - name: "git clone public repo"
