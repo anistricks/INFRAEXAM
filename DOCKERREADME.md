@@ -38,4 +38,4 @@ docker logs <CONTAINER_ID>
 
 Il est souvent utile pour y voir plus clair de stopper et supprimer tous les conteneurs :
 
-" docker stop $(docker ps -aq) && docker rm $(docker ps -aq) "
+ docker stop $(docker ps -aq) && docker rm $(docker ps -aq) 
