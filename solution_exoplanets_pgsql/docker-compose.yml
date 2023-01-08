@@ -13,6 +13,7 @@ services:
     environment:
       POSTGRES_USER : postgres
       POSTGRES_PASSWORD: ipl
+      POSTGRES_DB: exoplanets
     volumes: 
       - pgdata:/var/lib/postgresql/data
       - ./initdb:/docker-entrypoint-initdb.d
