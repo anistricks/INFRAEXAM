@@ -29,3 +29,14 @@ Se connecter à l’intérieur d’un conteneur : docker exec -it <CONTAINER_ID>
 Déboguer un conteneur : docker logs <CONTAINER_ID>
 
 Il est souvent utile pour y voir plus clair de stopper et supprimer tous les conteneurs : docker stop $(docker ps -aq) && docker rm $(docker ps -aq) 
+
+  EXEMPLE :
+FROM debian
+MAINTAINER Olivier Choquet
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install ssh -y
+EXPOSE 22
+
+pour cree et lancer :
+docker build -t debian_ssh .
+docker run -p 2222:22 -d debian_ssh
