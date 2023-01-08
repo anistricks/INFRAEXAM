@@ -1,0 +1,11 @@
+---
+# handlers file for exoplanets_reverseproxy
+- name: reload Apache
+  ansible.builtin.service:
+    name: apache2
+    state: reloaded
+
+- name: restart Apache
+  ansible.builtin.service:
+    name: apache2
+    state: restarted

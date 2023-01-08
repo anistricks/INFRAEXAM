@@ -1,0 +1,36 @@
+---
+# THIS PLAYBOOK MUST BE LAUNCHED IN ROOT !
+# name of the playbook
+- name: "Install Exoplanets(nodejs) site"
+  # Install only on localhost machine
+  hosts: localhost
+  # Collect info on the system IP Address, OS information, ....
+  # performance cost !
+  gather_facts: false
+  tasks:
+    - name: "Install nodejs"
+      # this will be executed with root account
+      #become: true
+      apt:
+        update_cache: yes
+        name: nodejs
+        state: present
+
+    - name: "git clone public repo"
+      ansible.builtin.git:
+        repo: https://gitlab.vinci.be/olivier.choquet/exoplanets_infra.git
+        dest: /home/olivier/exoplanets_site
+
+    - name: "Build app"
+      command: npm install
+      args:
+        chdir: /home/olivier/exoplanets_site
+
+    - name: "Start app"
+      command: npm start
+      args:
+        chdir: /home/olivier/exoplanets_site
+
+
+
+
