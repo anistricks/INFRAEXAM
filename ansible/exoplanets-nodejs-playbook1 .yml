@@ -13,7 +13,9 @@
       #become: true
       apt:
         update_cache: yes
-        name: nodejs
+        name: 
+        - nodejs
+        - npm
         state: present
 
     - name: "git clone public repo"
