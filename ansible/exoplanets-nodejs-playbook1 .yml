@@ -22,6 +22,7 @@
       ansible.builtin.git:
         repo: https://gitlab.vinci.be/olivier.choquet/exoplanets_infra.git
         dest: /home/olivier/exoplanets_site
+        force: yes
 
     - name: "Build app"
       command: npm install
