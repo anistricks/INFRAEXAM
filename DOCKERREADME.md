@@ -12,30 +12,20 @@ add-apt-repository "deb https://download.docker.com/linux/debian $(lsb_release -
 apt-get update &&
 apt-get install docker-ce docker-ce-cli containerd.io
 
-Vérification de l’installation :
-docker run hello-world
+Vérification de l’installation : docker run hello-world
 
-Lister les images :
-docker images
+Lister les images : docker images
 
-Supprimer une image :
-docker rmi <IMAGE>
+Supprimer une image : docker rmi <IMAGE>
 
-Lister les conteneurs :
-docker ps
+Lister les conteneurs : docker ps
 
-Lister tous les conteneurs :
-docker ps -a
+Lister tous les conteneurs : docker ps -a
 
-Démarrer, arrêter, stopper un conteneur :
-docker container start/stop/kill/rm <CONTAINER>
+Démarrer, arrêter, stopper un conteneur : docker container start/stop/kill/rm <CONTAINER>
 
-Se connecter à l’intérieur d’un conteneur :
-docker exec -it <CONTAINER_ID> /bin/bash
+Se connecter à l’intérieur d’un conteneur : docker exec -it <CONTAINER_ID> /bin/bash
 
-Déboguer un conteneur :
-docker logs <CONTAINER_ID>
+Déboguer un conteneur : docker logs <CONTAINER_ID>
 
-Il est souvent utile pour y voir plus clair de stopper et supprimer tous les conteneurs :
-
- docker stop $(docker ps -aq) && docker rm $(docker ps -aq) 
+Il est souvent utile pour y voir plus clair de stopper et supprimer tous les conteneurs : docker stop $(docker ps -aq) && docker rm $(docker ps -aq) 
