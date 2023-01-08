@@ -1,0 +1,39 @@
+
+# THIS PLAYBOOK MUST BE LAUNCHED IN ROOT !
+# name of the playbook
+
+  # Install only on localhost machine
+- hosts: localhost
+  # Collect info on the system IP Address, OS information, ....
+  # performance cost !
+  gather_facts: false
+  tasks:
+   - name: Install cowsay package
+     apt:
+      name: cowsay
+      state: latest
+   - name: Install whois package
+     apt:
+      name: whois
+      state: present
+   - name: Generate password hash for admin user
+     shell: mkpasswd --method=sha-512
+     register: password_hash
+   - name: Create admin user
+     user:
+      name: admin
+      createhome: yes
+      password: "{{ password_hash.stdout }}"
+   - name: Add drm alias for examen user
+     lineinfile:
+      path: /home/admin/.bashrc
+      state: present
+      line: "alias drm='docker stop $(docker ps -aq) && docker rm $(docker ps -aq)'"
+   - name: Run cowsay command
+     command: cowsay -f ghostbusters AdminInfra
+     register: cowsay_output
+     environment:
+       PATH: "/usr/games:$PATH"
+   - name : test
+     debug:
+       var: cowsay_output.stdout_lines
